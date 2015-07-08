@@ -259,9 +259,34 @@ def connections_in_common(network, user_A, user_B):
 #   in this procedure to keep track of nodes already visited in your search. You 
 #   may safely add default parameters since all calls used in the grading script 
 #   will only include the arguments network, user_A, and user_B.
+def find_path(network, people, target, visited):
+  for p in people:
+    if p in visited:
+      continue
+            
+    visited.append(p)
+        
+    if target in network[p]['friends']:   
+      visited.append(target)
+      return visited
+    else:
+      return find_path(network, network[p]['friends'], target, visited)
+        
+    
 def path_to_friend(network, user_A, user_B):
-  # your RECURSIVE solution here!
-  return None
+  if (user_A not in network) or (user_B not in network):
+    return None
+    
+  visited = []
+    
+  friends = network[user_A]['friends']
+  visited.append(user_A)
+    
+  path = find_path(network, friends, user_B, visited)
+  if not path:
+    return None
+    
+  return path
 
 # Make-Your-Own-Procedure (MYOP)
 # ----------------------------------------------------------------------------- 
