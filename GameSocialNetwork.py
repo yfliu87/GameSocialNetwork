@@ -57,15 +57,21 @@ def create_data_structure(string_input):
     endpos = people.find('.', startpos + 1)
 
     friends = people[startpos + 1 : endpos].split(',')
+    newFriends = []
+    for p in friends:
+        newFriends.append(p[1:])
     
     startpos = people.find('play', endpos + 1) + len('play')
     endpos = people.find('.', startpos + 1)
 
     games = people[startpos:endpos].split(',')
-    
+    newGames = []
+    for p in games:
+        newGames.append(p[1:])
+        
     network[name] = {}
-    network[name]['friends'] = friends
-    network[name]['games'] = games
+    network[name]['friends'] = newFriends
+    network[name]['games'] = newGames
     
   return network
 
