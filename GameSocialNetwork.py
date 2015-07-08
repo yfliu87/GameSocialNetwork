@@ -160,7 +160,14 @@ def add_connection(network, user_A, user_B):
 #   - If the user already exists in network, return network *UNCHANGED* (do not change
 #     the user's game preferences)
 def add_new_user(network, user, games):
+  if user in network:
     return network
+    
+  network[user] = {}
+  network[user]['friends'] = []
+  network[user]['games'] = games
+    
+  return network
     
 # ----------------------------------------------------------------------------- 
 # get_secondary_connections(network, user): 
