@@ -49,7 +49,7 @@ network={}
 def create_data_structure(string_input):
   corpus = string_input.split('.')
 
-  for i in range(len(corpus) - 1):
+  for i in range(0, len(corpus) - 1, 2):
     people = corpus[i] + '.' + corpus[i + 1]
     name = people[:people.find(' ')]
     
