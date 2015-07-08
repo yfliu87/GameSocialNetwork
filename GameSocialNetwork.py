@@ -56,7 +56,7 @@ def create_data_structure(string_input):
     startpos = people.find('connected to') + len('connected to')
     endpos = people.find('.', startpos + 1)
 
-    friends = people[startpos + 1 : endpos].split(',')
+    friends = people[startpos:endpos].split(',')
     newFriends = []
     for p in friends:
         newFriends.append(p[1:])
