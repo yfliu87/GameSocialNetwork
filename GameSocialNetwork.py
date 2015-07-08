@@ -89,7 +89,10 @@ def create_data_structure(string_input):
 #   - If the user has no connections, return an empty list.
 #   - If the user is not in network, return None.
 def get_connections(network, user):
-  return []
+  if user not in network:
+    return None
+    
+  return network[user]['friends']
 
 # ----------------------------------------------------------------------------- 
 # get_games_liked(network, user): 
