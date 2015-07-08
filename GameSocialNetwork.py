@@ -218,7 +218,14 @@ def get_secondary_connections(network, user):
 #   The number of connections in common (as an integer).
 #   - If user_A or user_B is not in network, return False.
 def connections_in_common(network, user_A, user_B):
-    return 0
+  if (user_A not in network) or (user_B not in network):
+    return False
+    
+  friendsOfA = network[user_A]['friends']
+  friendsOfB = network[user_B]['friends']
+    
+  common = list(set(friendsOfA) & set(friendsOfB))
+  return len(common)
 
 # ----------------------------------------------------------------------------- 
 # path_to_friend(network, user_A, user_B): 
