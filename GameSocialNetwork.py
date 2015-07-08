@@ -44,8 +44,30 @@ Freda likes to play Starfleet Commander, Ninja Hamsters, Seahorse Adventures."
 # 
 # Return:
 #   The newly created network data structure
+
+network={}
 def create_data_structure(string_input):
-    return network
+  corpus = string_input.split('.')
+
+  for i in range(len(corpus) - 1):
+    people = corpus[i] + '.' + corpus[i + 1]
+    name = people[:people.find(' ')]
+    
+    startpos = people.find('connected to') + len('connected to')
+    endpos = people.find('.', startpos + 1)
+
+    friends = people[startpos + 1 : endpos].split(',')
+    
+    startpos = people.find('play', endpos + 1) + len('play')
+    endpos = people.find('.', startpos + 1)
+
+    games = people[startpos:endpos].split(',')
+    
+    network[name] = {}
+    network[name]['friends'] = friends
+    network[name]['games'] = games
+    
+  return network
 
 # ----------------------------------------------------------------------------- # 
 # Note that the first argument to all procedures below is 'network' This is the #
@@ -203,8 +225,8 @@ def path_to_friend(network, user_A, user_B):
 # Replace this with your own procedure! You can also uncomment the lines below
 # to see how your code behaves. Have fun!
 
-#net = create_data_structure(example_input)
-#print net
+net = create_data_structure(example_input)
+print net
 #print get_connections(net, "Debra")
 #print get_connections(net, "Mercedes")
 #print get_games_liked(net, "John")
