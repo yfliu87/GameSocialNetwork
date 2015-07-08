@@ -133,6 +133,13 @@ def get_games_liked(network,user):
 #   - If a connection already exists from user_A to user_B, return network unchanged.
 #   - If user_A or user_B is not in network, return False.
 def add_connection(network, user_A, user_B):
+  if (user_A not in network) or (user_B not in network):
+    return None
+    
+  friendsOfA = network[user_A]['friends']
+  if user_B not in friendsOfA:
+    network[user_A]['friends'].append(user_B)
+        
   return network
 
 # ----------------------------------------------------------------------------- 
